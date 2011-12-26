@@ -1,10 +1,10 @@
-package com.meathill.utils {
+package com.meathill {
 	/**
 	 * 日期相关函数
 	 * @author	Meathill
 	 * @version	0.1(2010-11-9)
 	 */
-	public class MeatDate extends Date {
+	public class MeatDate {
     //=========================================================================
     //  Class Constants
     //=========================================================================
@@ -13,17 +13,13 @@ package com.meathill.utils {
     //=========================================================================
     //  constructor
     //=========================================================================
-    public function MeatDate(date:Date) {
-      fullYear = date.fullYear;
-      month = date.month;
-      date = date.date;
-      hours = date.hours;
-      minutes = date.minutes;
-      seconds = date.seconds;
+    public function MeatDate(date:Date = null) {
+      this.date = date || new Date();
     }
     //=========================================================================
     //  Propreties
     //=========================================================================
+    private var date:Date;
 		/**
 		 * 取是一年中的第几天
 		 * @param	日期实例
@@ -31,11 +27,11 @@ package com.meathill.utils {
 		 */
 		public function get dateInYear():int {
 			var result:int = 0;
-			for (var i:int = 0, len:int = month; i < len; i += 1) {
+			for (var i:int = 0, len:int = date.month; i < len; i += 1) {
 				result += MONTH_DAY_NUM[i];
 				// 闰年2月多一天
-				if (fullYear % 4 == 0 && i == 1) { 
-					_esult += 1;
+				if (date.fullYear % 4 == 0 && i == 1) { 
+					result += 1;
 				}
 			}
 			return result + date;
@@ -45,7 +41,7 @@ package com.meathill.utils {
      * @return
      */
 		public function dayCN():String {
-			return DAYS[day];
+			return DAYS[date.day];
 		}
     //=========================================================================
     //  Public Methods
@@ -56,9 +52,9 @@ package com.meathill.utils {
 		 * @return 新的Date实例
 		 */
 		public function addDays(num:int):Date {
-			var date:Date = new Date(fullYear, month, date);
-      date.date + num;
-			return date;
+			var newDate:Date = new Date(date.fullYear, date.month, date.date);
+      newDate.date + num;
+			return newDate;
 		}
     /**
      * 格式化输出日期
@@ -66,29 +62,28 @@ package com.meathill.utils {
      * @return 格式化后的日期
      */
     public function format(template:String):String {
-      var result:String = template;
       //-- 转换年
-      result = result.replace(/y{4}|y{2}/igm, getYearString);
+      template = template.replace(/y{4}|y{2}/igm, getYearString);
       //-- 转换月
-      result = result.replace(/m{2}/igm, getMonthString);
+      template = template.replace(/m{2}/igm, getMonthString);
       //-- 转换日
-      result = result.replace(/d{2}/igm, getDateString);
+      template = template.replace(/d{2}/igm, getDateString);
       
-      return result;
+      return template;
     }
     //=========================================================================
     //  Private Functions
     //=========================================================================
-    private function returnYearString():String {
-      var str:String = String(arguments[0]);
-      var year:String = fullYear.toString()
+    private function getYearString(...args):String {
+      var str:String = String(args[0]);
+      var year:String = date.fullYear.toString()
       return str.length == 4 ? year : year.substr(2, 2);
     }
-    private function getMonthString():String {
-      return month + 1 > 9 ? month + 1 : '0' + (month + 1);
+    private function getMonthString(...args):String {
+      return date.month + 1 > 9 ? String(date.month + 1) : '0' + (date.month + 1);
     }
-    private function getDateString():String {
-      return date < 10 ? '0' + date : date.toString();
+    private function getDateString(...args):String {
+      return date.date < 10 ? '0' + date.date : date.date.toString();
     }
 	}
 }
