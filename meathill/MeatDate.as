@@ -9,7 +9,8 @@ package com.meathill {
     //  Class Constants
     //=========================================================================
 		public static const MONTH_DAY_NUM:Array = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-		public static const DAYS:Array = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+		public static const DAY_NAMES:Array = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    public static const MONTH_NAMES:Array = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
     //=========================================================================
     //  constructor
     //=========================================================================
@@ -41,7 +42,7 @@ package com.meathill {
      * @return
      */
 		public function dayCN():String {
-			return DAYS[date.day];
+			return DAY_NAMES[date.day];
 		}
     //=========================================================================
     //  Public Methods
@@ -53,7 +54,7 @@ package com.meathill {
 		 */
 		public function addDays(num:int):Date {
 			var newDate:Date = new Date(date.fullYear, date.month, date.date);
-      newDate.date + num;
+      newDate.date += num;
 			return newDate;
 		}
     /**
