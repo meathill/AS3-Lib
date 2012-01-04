@@ -5,14 +5,14 @@ package com.meathill.events {
     public static const SECURITY_ERROR:String = "securityError";
     public static const IO_ERROR:String = "ioError";
     
-    public function ServerErrorEvent(type:String, code:String, msg:String = "") {
+    public function ServerErrorEvent(type:String, code:int, msg:String = "") {
       _code = code;
       _msg = msg;
       super(type);
     }
     
-    private var _code:String;
-    public function get code():String {
+    private var _code:int;
+    public function get code():int {
       return _code;
     }
     private var _msg:String;

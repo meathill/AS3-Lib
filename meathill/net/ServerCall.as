@@ -29,7 +29,7 @@ package com.meathill.net {
     }
     
     public function call():void{
-      createLoader().load(encoder.encode(_url, data);
+      createLoader().load(encoder.encode(_url, data));
     }
     public function addHandlers(dataHandler:Function =  null, errorHandler:Function = null):void {
       if (dataHandler != null) {
@@ -42,7 +42,7 @@ package com.meathill.net {
     }
     public function removeHandler(dataHandler:Function = null, errorHandler:Function = null):void {
       if (dataHandler != null) {
-        removeEventListener((ServerDataEvent.SERVER_DATA, dataHandler);
+        removeEventListener(ServerDataEvent.SERVER_DATA, dataHandler);
       }
       if (errorHandler != null) {
         removeEventListener(ServerErrorEvent.IO_ERROR, errorHandler);
@@ -55,6 +55,7 @@ package com.meathill.net {
       // TODO Auto Generated method stub
       var loader:URLLoader = new URLLoader();
       initLoaderHandlers(loader);
+      return loader;
     }
     private function initLoaderHandlers(loader:URLLoader):void {
       // TODO Auto Generated method stub
@@ -74,7 +75,7 @@ package com.meathill.net {
       // TODO Auto Generated method stub
       var data:Object;
       if (encoder != null) {
-        data = encoder.decode(data);
+        data = encoder.decode(source);
       } else {
         data = source;
       }
