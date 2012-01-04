@@ -23,7 +23,7 @@ package com.meathill.net {
       serverCall.call();
     }
     
-    private function getEncoder():com.meathill.net.IEncoder {
+    private function getEncoder():IEncoder {
       // TODO Auto Generated method stub
       return new DefaultEncoder();
     }

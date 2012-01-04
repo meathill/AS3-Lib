@@ -50,7 +50,6 @@ package com.meathill.net {
       }
     }
     
-    
     private function createLoader():URLLoader {
       // TODO Auto Generated method stub
       var loader:URLLoader = new URLLoader();
