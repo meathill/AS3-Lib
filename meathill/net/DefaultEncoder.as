@@ -4,13 +4,19 @@ package com.meathill.net {
   import flash.net.URLVariables;
   
   public class DefaultEncoder implements IEncoder {
+
+    private var param:URLVariables;
     
     public function encode(url:String, data:Object):URLRequest {
       var request:URLRequest = new URLRequest(url);
       request.method = URLRequestMethod.POST;
-      var param:URLVariables = new URLVariables();
-      for (var prop:String in data) {
-        param[prop] = data[prop];
+      if (data is IURLVariable) {
+        param = IURLVariable(data).toURLVariable();
+      } else {
+        param = new URLVariables();
+        for (var prop:String in data) {
+          param[prop] = data[prop];
+        }
       }
       request.data = param;
       return request;

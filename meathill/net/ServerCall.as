@@ -17,7 +17,7 @@ package com.meathill.net {
     public function ServerCall(url:String, data:Object, encoder:IEncoder) {
       super();
       _url = url;
-      this.data = url;
+      this.data = data;
       this.encoder = encoder;
     }
     

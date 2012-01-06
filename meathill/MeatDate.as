@@ -44,6 +44,16 @@ package com.meathill {
 		public function dayCN():String {
 			return DAY_NAMES[date.day];
 		}
+    /**
+     * 取当前日期到目标日期差几天 
+     * @param date
+     * @return 
+     * 
+     */    
+    public function getDaysTo(toDate:Date):int{
+      var seconds:int = (toDate.time - date.time) / 1000;
+      return int(seconds / 3600 / 24);
+    }
     //=========================================================================
     //  Public Methods
     //=========================================================================
