@@ -1,4 +1,4 @@
-﻿package com.meathill.events {
+﻿package com.meathill.net.events {
 	import flash.events.Event;
 	
 	/**
